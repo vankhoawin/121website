@@ -13,27 +13,32 @@ exports.query = function (req, res) {
 	fs.readFile('server/api/query/query.data.json', 'utf-8', function (err, result) {
     if (err) { return handleError(res, err); }
 
-  	// console.log(key)
   	var termID = '' + JSON.parse(result)[key];
+  	// console.log(termID);
 
   	fs.readFile('server/api/query/query.tfidf.json', 'utf-8', function(err, result) {
 	    if (err) { return handleError(res, err); }
 
-  		var toReturn = [];
 
-	  	var TFIDF = JSON.parse(result);
+	  	var TFIDF = JSON.parse(result)[termID];
 
-  		for (var docID in TFIDF) {
-  			if (toReturn.length >= 10)
-  				break;
+  		var urlList = TFIDF.slice(0, 10);
+			
+			fs.readFile('server/api/query/query.docid.json', 'utf-8', function(err, result) {
+		    if (err) { return handleError(res, err); }
 
-  			var document = TFIDF[docID]
-	  		if (termID in document) {
-	  			toReturn.push(document[termID]);
-	  		}
-	  	}
+		    for (var elementID in urlList) {
+		    	var docID = urlList[elementID][1];
+		    	console.log("docID: " + docID);
+		    	var elementTitleAndUrl = JSON.parse(result)[docID];
+		    	console.log(elementTitleAndUrl);
+		    	urlList[elementID].push(elementTitleAndUrl.title)
+		    	urlList[elementID].push(elementTitleAndUrl.url)
+		    }
 
-			res.status(200).send(JSON.stringify(toReturn));
+				res.status(200).send(JSON.stringify(urlList));
+			
+	  	})
   	})
 	})
 }
