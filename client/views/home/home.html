@@ -3,13 +3,23 @@
   <div>
 	  <input ng-model="vm.inputText" />
 	  <button ng-click="vm.queryDatabase()">Query Database</button>
+	  <button ng-click="vm.clearSearch()">Clear</button>
 
 	  <h1>query: <span>{{ vm.query }}</span></h1>
-	  <!-- <h1>result: <span>{{ vm.result }}</span></h1> -->
-	  <ul>
-	  	<li ng-repeat="tfidf in vm.result track by $index">
-	  		{{ tfidf }}
-	  	</li>
-	  </ul>
+
+	  <table class="result-table">
+	  	<tr>
+	  		<th class="result-score">TFIDF Score</th>
+	  		<th class="result-website">Website</th>
+	  	</tr>
+	  	<tr ng-repeat="element in vm.result track by $index">
+	  		<td>
+	  			<h3>{{ element[0] }}</h1>
+	  		</td>
+	  		<td>
+	  			<a href="{{ element[3] }}" target="_blank">{{ element[2] }}</a>
+	  		</td>
+	  	</tr>
+	  </table>
   </div>
 </div>

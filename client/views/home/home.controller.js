@@ -17,6 +17,11 @@ angular.module('121assignment3website')
       			vm.result = data;
       			// console.log(data);
       		})
+      },
+      clearSearch: function() {
+      	vm.query = '';
+      	vm.result = '';
+      	vm.inputText = '';
       }
       
     });
