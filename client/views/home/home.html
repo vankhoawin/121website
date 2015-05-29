@@ -1,0 +1,15 @@
+<div>
+  {{ vm.name }}
+  <div>
+	  <input ng-model="vm.inputText" />
+	  <button ng-click="vm.queryDatabase()">Query Database</button>
+
+	  <h1>query: <span>{{ vm.query }}</span></h1>
+	  <!-- <h1>result: <span>{{ vm.result }}</span></h1> -->
+	  <ul>
+	  	<li ng-repeat="tfidf in vm.result track by $index">
+	  		{{ tfidf }}
+	  	</li>
+	  </ul>
+  </div>
+</div>

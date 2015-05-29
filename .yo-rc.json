@@ -1,0 +1,9 @@
+{
+  "generator-bangular": {
+    "version": "0.9.3",
+    "filters": {
+      "backend": "json",
+      "ngAnimate": true
+    }
+  }
+}
