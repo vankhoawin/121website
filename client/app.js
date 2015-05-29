@@ -2,7 +2,8 @@
 
 angular.module('121assignment3website', [
   'ngRoute',
-  'ngAnimate'
+  'ngAnimate',
+  'angular-loading-bar'
 ])
   .config(function ($routeProvider, $locationProvider) {
 

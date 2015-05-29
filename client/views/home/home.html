@@ -24,14 +24,11 @@
 		<div class="large-12 columns">
 			<form ng-submit="vm.queryDatabase()">
 				<div class="row collapse">
-					<div class="small-8 columns">
+					<div class="small-10 columns">
 						<input ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
 					</div>
-					<div class="small-4 columns">
-						<ul class=" button-group">
-							<li><button type="submit">Search</button></li>
-							<li><button ng-click="vm.clearSearch()">Clear</button></li>
-						</ul>
+					<div class="small-2 columns">
+						<button type="submit">Search</button>
 					</div>
 				</div>
 			</form>
@@ -39,7 +36,16 @@
 	</div>
 
 	<div>
-		<h1>query: <span>{{ vm.query }}</span></h1>
+		<div>
+			<div class="query-text">
+				<h1>query:</h1>
+			</div>
+			<h1 class="query-clear" ng-click="vm.clearSearch()" ng-hide="vm.query === ''">
+				<span class="query-x">&#215;</span>
+				<span>{{ vm.query }}</span>
+			</h1>
+			
+		</div>
 		<table class="result-table">
 			<tr>
 				<th class="result-score">TFIDF Score</th>

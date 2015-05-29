@@ -2,25 +2,53 @@ body {
   font-family: sans-serif;
 }
 
+.row {
+	padding-top: 20px;
+}
 
 .result-table {
 	table-layout: fixed;
 	width: 100%;
-}
 
-.result-score {
-	width: 30px;
-}
+	.result-score {
+		width: 30px;
+	}
 
-.result-website {
-	width: 70px;
-}
+	.result-website {
+		width: 70px;
+	}
 
-.result-table td {
-	text-overflow: ellipse;
-	overflow: hidden;
+	td {
+		text-overflow: ellipse;
+		overflow: hidden;
+	}
 }
 
 .header h2 {
 	display: inline;
+}
+
+.query-text {
+  display: inline-block;
+}
+
+.query-clear {
+	background-color: #e4e4e4;
+	border: 1px solid #aaa;
+  border-radius: 4px;
+	display: inline-block;
+	padding: 10px;
+
+	.query-x {
+		color: #aaa;
+
+	}
+
+	&:hover {
+		cursor: pointer;
+
+		.query-x{
+			color: #888;
+		}
+	}
 }
