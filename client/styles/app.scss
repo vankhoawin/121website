@@ -9,11 +9,16 @@ body {
 }
 
 .result-score {
-	width: 25%;
+	width: 30px;
 }
 
 .result-website {
-	width: 75%;
+	width: 70px;
+}
+
+.result-table td {
+	text-overflow: ellipse;
+	overflow: hidden;
 }
 
 .header h2 {

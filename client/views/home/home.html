@@ -1,43 +1,58 @@
-<div>
-	<header></header>
+<nav class="top-bar" data-topbar role="navigation">
+	<ul class="title-area">
+		<li class="name">
+			<h1><a href="/">121assignment3website</a></h1>
+		</li>
+		</ul>
+	<section class="top-bar-section">
+		<ul class="right">
+			<li><a href ng-click="vm.openAboutModal()">About</a></li>
+		</ul>
+	</section>
+</nav>
 
-
-  <div class="row">
-    <div class="large-12 columns">
-    	<form ng-submit="vm.queryDatabase()">
-	      <div class="row collapse">
-	        <div class="small-8 columns">
-		  			<input ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
-	        </div>
-	        <div class="small-4 columns">
-		        <ul class=" button-group">
-			  			<li><button type="submit">Search</button></li>
-			  			<li><button ng-click="vm.clearSearch()">Clear</button></li>
-		        </ul>
-	        </div>
-	      </div>
-      </form>
-    </div>
-  </div>
-
-
-  <div>
-
-	  <h1>query: <span>{{ vm.query }}</span></h1>
-
-	  <table class="result-table">
-	  	<tr>
-	  		<th class="result-score">TFIDF Score</th>
-	  		<th class="result-website">Website</th>
-	  	</tr>
-	  	<tr ng-repeat="element in vm.result track by $index">
-	  		<td>
-	  			<h3>{{ element[0] }}</h1>
-	  		</td>
-	  		<td>
-	  			<a href="{{ element[3] }}" target="_blank">{{ element[2] }}</a>
-	  		</td>
-	  	</tr>
-	  </table>
-  </div>
+<div id="about-modal" class="reveal-modal" data-reveal aria-labelledby="About" aria-hidden="true" role="dialog">
+	<h2>CS121 Search Engine</h2>
+	<br>
+	<p class="lead">Search engine for Assignment #3. Runs on Node, Angular, and Express. Hosted on Heroku.</p>
+	<p>Created by Saikripa Mukund, John Nguyen, and Van Nguyen. May 2015.</p>
+	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
+
+<div class="row">
+	<div class="row">
+		<div class="large-12 columns">
+			<form ng-submit="vm.queryDatabase()">
+				<div class="row collapse">
+					<div class="small-8 columns">
+						<input ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
+					</div>
+					<div class="small-4 columns">
+						<ul class=" button-group">
+							<li><button type="submit">Search</button></li>
+							<li><button ng-click="vm.clearSearch()">Clear</button></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div>
+		<h1>query: <span>{{ vm.query }}</span></h1>
+		<table class="result-table">
+			<tr>
+				<th class="result-score">TFIDF Score</th>
+				<th class="result-website">Website</th>
+			</tr>
+			<tr ng-repeat="element in vm.result track by $index">
+				<td>
+					<h3>{{ element[0] }}</h1>
+					</td>
+					<td>
+						<a href="{{ element[3] }}" target="_blank">{{ element[2] }}</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>

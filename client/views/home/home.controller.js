@@ -9,6 +9,7 @@ angular.module('121assignment3website')
       inputText: '',
       query: '',
       result: '',
+
       queryDatabase: function() {
       	$http.get('/api/querys/' + vm.inputText.toLowerCase())
       		.success(function(data, status) {
@@ -21,16 +22,9 @@ angular.module('121assignment3website')
       	vm.query = '';
       	vm.result = '';
       	vm.inputText = '';
+      },
+      openAboutModal: function() {
+        $('#about-modal').foundation('reveal', 'open');
       }
     });
-
-
-		$('#query-db').keydown(function(event){    
-			console.log('works');
-	    if(event.keyCode==13){
-	       vm.queryDatabase();
-	    }
-		});
-
-
   });
