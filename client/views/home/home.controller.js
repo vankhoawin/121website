@@ -6,12 +6,11 @@ angular.module('121assignment3website')
     var vm = this;
 
     angular.extend(vm, {
-      name: 'HomeCtrl',
       inputText: '',
       query: '',
       result: '',
       queryDatabase: function() {
-      	$http.get('/api/querys/' + vm.inputText)
+      	$http.get('/api/querys/' + vm.inputText.toLowerCase())
       		.success(function(data, status) {
       			vm.query = vm.inputText;
       			vm.result = data;

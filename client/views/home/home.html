@@ -1,9 +1,25 @@
 <div>
-  {{ vm.name }}
+	<header></header>
+
+
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="small-8 columns">
+	  			<input ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
+        </div>
+        <div class="small-2 columns">
+	  			<button ng-click="vm.queryDatabase()">Search</button>
+        </div>
+        <div class="small-2 columns">
+	  			<button ng-click="vm.clearSearch()">Clear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div>
-	  <input ng-model="vm.inputText" />
-	  <button ng-click="vm.queryDatabase()">Query Database</button>
-	  <button ng-click="vm.clearSearch()">Clear</button>
 
 	  <h1>query: <span>{{ vm.query }}</span></h1>
 
