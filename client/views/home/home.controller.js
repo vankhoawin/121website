@@ -22,7 +22,15 @@ angular.module('121assignment3website')
       	vm.result = '';
       	vm.inputText = '';
       }
-      
     });
+
+
+		$('#query-db').keydown(function(event){    
+			console.log('works');
+	    if(event.keyCode==13){
+	       vm.queryDatabase();
+	    }
+		});
+
 
   });
