@@ -11,10 +11,13 @@ angular.module('121assignment3website')
       result: '',
 
       queryDatabase: function() {
+        document.getElementById('query-input').disabled = true;
+
       	$http.get('/api/querys/' + vm.inputText.toLowerCase())
       		.success(function(data, status) {
             vm.query = data ? vm.inputText : 'No results found.';
             vm.result = data;
+            document.getElementById('query-input').disabled = false;
       		})
       },
       clearSearch: function() {

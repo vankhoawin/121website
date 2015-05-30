@@ -3,7 +3,7 @@
 		<li class="name">
 			<h1><a href="/">121assignment3website</a></h1>
 		</li>
-		</ul>
+	</ul>
 	<section class="top-bar-section">
 		<ul class="right">
 			<li><a href ng-click="vm.openAboutModal()">About</a></li>
@@ -13,52 +13,62 @@
 
 <div id="about-modal" class="reveal-modal" data-reveal aria-labelledby="About" aria-hidden="true" role="dialog">
 	<h2>CS121 Search Engine</h2>
-	<br>
-	<p class="lead">Search engine for Assignment #3. Runs on Node, Angular, and Express. Hosted on Heroku.</p>
-	<p>Created by Saikripa Mukund, John Nguyen, and Van Nguyen. May 2015.</p>
+	<ul>
+		<li>Runs on Node, Angular, and Express. Hosted on Heroku.</li>
+		<li>Data was extracted by and limited to a web crawl of the ics.uci.edu webdomain.</li>
+		<li>Term frequency-inverse document frequency (TF-IDF) scores were calculated according to <a target="_blank" href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">these standards</a>.</li>
+		<li>Created by Saikripa Mukund, John Nguyen, and Van Nguyen. May 2015. </li>
+	</ul>
 	<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
 <div class="row">
-	<div class="row">
-		<div class="large-12 columns">
-			<form ng-submit="vm.queryDatabase()">
-				<div class="row collapse">
-					<div class="small-10 columns">
-						<input ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
-					</div>
-					<div class="small-2 columns">
-						<button type="submit">Search</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+	<div class="large-12 columns">
+		<div class="row">
+	    <div class="large-12 columns">
+	      <div class="row collapse">
+	        <div class="small-12 medium-10 columns">
+						<input id="query-input" ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
+	        </div>
+	        <div class="small-12 medium-2 columns">
+	          <a href="#" ng-click="vm.queryDatabase()" class="button postfix">Search</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 
-	<div>
-		<div ng-hide="vm.query === ''">
-			<div class="query-text">
-				<h1>query words:</h1>
+		<div class="row">
+			<div class="large-12 columns">
+				<div ng-hide="vm.query === ''">
+					<div class="query-text">
+						<h3>Query Words:</h3>
+					</div>
+					<h3 class="query-clear" ng-click="vm.clearSearch()">
+						<span class="query-x">&#215;</span>
+						<span>{{ vm.query }}</span>
+					</h3>
+				</div>
+
+
+				<table class="result-table large-12 columns">
+					<tr>
+						<th class="result-rank">Ranking</th>
+						<th class="result-score hide-for-small-only">TF-IDF Score</th>
+						<th class="result-website">Website</th>
+					</tr>
+					<tr ng-repeat="element in vm.result track by $index">
+						<td>
+							<h3>{{ $index + 1 }}</h3>
+						</td>
+						<td class="hide-for-small-only">
+							<h5>{{ element[0] }}</h5>
+						</td>
+						<td>
+							<a href="{{ element[3] }}" target="_blank">{{ element[2] }}</a>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<h1 class="query-clear" ng-click="vm.clearSearch()">
-				<span class="query-x">&#215;</span>
-				<span>{{ vm.query }}</span>
-			</h1>
-		</div>
-		
-		<table class="result-table">
-			<tr>
-				<th class="result-score">TFIDF Score</th>
-				<th class="result-website">Website</th>
-			</tr>
-			<tr ng-repeat="element in vm.result track by $index">
-				<td>
-					<h3>{{ element[0] }}</h1>
-					</td>
-					<td>
-						<a href="{{ element[3] }}" target="_blank">{{ element[2] }}</a>
-					</td>
-				</tr>
-			</table>
 		</div>
 	</div>
+</div>

@@ -1,9 +1,10 @@
 body {
   font-family: sans-serif;
+  overflow-y: scroll;
 }
 
 button {
-  padding: 0.6rem 2rem 0.6rem 2rem;
+  // padding: 0.6rem 2rem 0.6rem 2rem;
 }
 
 .row {
@@ -11,21 +12,27 @@ button {
 }
 
 .result-table {
-	table-layout: fixed;
-	width: 100%;
+	// table-layout: fixed;
+	max-width: 100%;
 
-	.result-score {
-		width: 30px;
-	}
 
-	.result-website {
-		width: 70px;
-	}
+	// .result-rank {
+	// 	width: 5px;
+	// }
 
-	td {
-		text-overflow: ellipse;
-		overflow: hidden;
-	}
+	// .result-score {
+	// 	width: 20px;
+	// }
+
+	// .result-website {
+	// 	width: 70px;
+	// 	overflow: ellipse;
+	// }
+
+	// td {
+	// 	text-overflow: ellipse;
+	// 	overflow: hidden;
+	// }
 }
 
 .header h2 {
