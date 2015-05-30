@@ -13,9 +13,8 @@ angular.module('121assignment3website')
       queryDatabase: function() {
       	$http.get('/api/querys/' + vm.inputText.toLowerCase())
       		.success(function(data, status) {
-      			vm.query = vm.inputText;
-      			vm.result = data;
-      			// console.log(data);
+            vm.query = data ? vm.inputText : 'No results found.';
+            vm.result = data;
       		})
       },
       clearSearch: function() {

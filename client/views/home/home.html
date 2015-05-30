@@ -36,16 +36,16 @@
 	</div>
 
 	<div>
-		<div>
+		<div ng-hide="vm.query === ''">
 			<div class="query-text">
-				<h1>query:</h1>
+				<h1>query words:</h1>
 			</div>
-			<h1 class="query-clear" ng-click="vm.clearSearch()" ng-hide="vm.query === ''">
+			<h1 class="query-clear" ng-click="vm.clearSearch()">
 				<span class="query-x">&#215;</span>
 				<span>{{ vm.query }}</span>
 			</h1>
-			
 		</div>
+		
 		<table class="result-table">
 			<tr>
 				<th class="result-score">TFIDF Score</th>
