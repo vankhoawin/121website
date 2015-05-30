@@ -24,6 +24,7 @@
 
 <div class="row">
 	<div class="large-12 columns">
+
 		<div class="row">
 	    <div class="large-12 columns">
 	      <div class="row collapse">
@@ -49,11 +50,11 @@
 					</h3>
 				</div>
 
-
 				<table class="result-table large-12 columns">
 					<tr>
 						<th class="result-rank">Ranking</th>
-						<th class="result-score hide-for-small-only">TF-IDF Score</th>
+						<th class="result-score hide-for-small-only">
+							<span data-tooltip class="has-tip" title="Term Frequency-Inverse Document Frequency">TF-IDF</span> Score</th>
 						<th class="result-website">Website</th>
 					</tr>
 					<tr ng-repeat="element in vm.result track by $index">
