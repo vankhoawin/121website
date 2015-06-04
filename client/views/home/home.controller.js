@@ -15,7 +15,7 @@ angular.module('121assignment3website')
 
       	$http.get('/api/querys/' + vm.inputText.toLowerCase())
       		.success(function(data, status) {
-            vm.query = data ? vm.inputText : 'No results found.';
+            vm.query = (data.length !== 0) ? vm.inputText.split(' ') : ['No results found.'];
             vm.result = data;
             document.getElementById('query-input').disabled = false;
       		})

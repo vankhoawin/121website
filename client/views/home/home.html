@@ -46,10 +46,10 @@
 					<div class="query-text">
 						<h3>Query Words:</h3>
 					</div>
-					<h3 class="query-clear" ng-click="vm.clearSearch()">
+					<div class="query-clear" ng-repeat="word in vm.query" ng-click="vm.clearSearch()">
 						<span class="query-x">&#215;</span>
-						<span>{{ vm.query }}</span>
-					</h3>
+						<span>{{ word }}</span>
+					</div>
 				</div>
 
 				<table class="result-table large-12 columns">
