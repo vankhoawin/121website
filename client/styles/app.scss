@@ -7,6 +7,25 @@ body {
 	padding-top: 20px;
 }
 
+.word-bank {
+	background-color: #f9f9f9;
+	border: solid 1px #DDDDDD;
+	color: white;
+  padding: 10px;
+
+  h2 {
+  	text-align: center;
+  }
+}
+
+.main-content {
+	padding-top: 0;
+}
+
+.query-container {
+  padding-bottom: 20px;
+}
+
 .result-table {
 	max-width: 100%;
 }
@@ -21,10 +40,11 @@ body {
 
 .query-clear {
 	background-color: #e4e4e4;
-	border: 1px solid #aaa;
-  border-radius: 4px;
-	display: inline-block;
-	padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
 
 	.query-x {
 		color: #aaa;
@@ -36,6 +56,14 @@ body {
 
 		.query-x{
 			color: #888;
+		}
+	}
+
+	&:active {
+		background-color: #008CBA;
+
+		h5 {
+			color: white;
 		}
 	}
 }

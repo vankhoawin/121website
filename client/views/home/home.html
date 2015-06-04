@@ -29,6 +29,17 @@
 
 		<div class="row">
 	    <div class="large-12 columns">
+	    	<div class="word-bank">
+	    		<h2>Word Bank</h2>
+	    		<div class="query-clear" ng-repeat="word in vm.wordBank">
+	    			<h5 ng-click="vm.wordBankQuery(word)">{{ word }}</h5>
+	    		</div>
+	    	</div>
+	    </div>
+	  </div>
+
+		<div class="row">
+	    <div class="large-12 columns">
 	      <div class="row collapse">
 	        <div class="small-12 medium-10 columns">
 						<input id="query-input" ng-model="vm.inputText" type="text" placeholder="Write a word or phrase here"/>
@@ -40,13 +51,13 @@
 	    </div>
 	  </div>
 
-		<div class="row">
+		<div class="row main-content">
 			<div class="large-12 columns">
-				<div ng-hide="vm.query === ''">
+				<div class="query-container" ng-hide="vm.query.length === 0">
 					<div class="query-text">
 						<h3>Query Words:</h3>
 					</div>
-					<div class="query-clear" ng-repeat="word in vm.query" ng-click="vm.clearSearch()">
+					<div class="query-clear" ng-repeat="word in vm.query track by $index" ng-click="vm.clearSearch($index)">
 						<span class="query-x">&#215;</span>
 						<span>{{ word }}</span>
 					</div>
