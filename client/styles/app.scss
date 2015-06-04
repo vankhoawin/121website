@@ -3,36 +3,12 @@ body {
   overflow-y: scroll;
 }
 
-button {
-  // padding: 0.6rem 2rem 0.6rem 2rem;
-}
-
 .row {
 	padding-top: 20px;
 }
 
 .result-table {
-	// table-layout: fixed;
 	max-width: 100%;
-
-
-	// .result-rank {
-	// 	width: 5px;
-	// }
-
-	// .result-score {
-	// 	width: 20px;
-	// }
-
-	// .result-website {
-	// 	width: 70px;
-	// 	overflow: ellipse;
-	// }
-
-	// td {
-	// 	text-overflow: ellipse;
-	// 	overflow: hidden;
-	// }
 }
 
 .header h2 {
@@ -62,4 +38,19 @@ button {
 			color: #888;
 		}
 	}
+}
+
+.animate-table.ng-enter, .animate-table.ng-leave {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.animate-table.ng-enter, .animate-table.ng-leave.ng-leave-active {
+  line-height: 0;
+  opacity: 0;
+}
+.animate-table.ng-leave, .animate-table.ng-enter.ng-enter-active {
+  line-height: 30px;
+  opacity: 1;
 }

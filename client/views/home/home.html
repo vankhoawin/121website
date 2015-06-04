@@ -1,7 +1,7 @@
 <nav class="top-bar" data-topbar role="navigation">
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="/">121assignment3website</a></h1>
+			<h1><a href="/">CS 121 Assignment 3</a></h1>
 		</li>
 	</ul>
 	<section class="top-bar-section">
@@ -12,10 +12,12 @@
 </nav>
 
 <div id="about-modal" class="reveal-modal" data-reveal aria-labelledby="About" aria-hidden="true" role="dialog">
-	<h2>CS121 Search Engine</h2>
+	<h2>CS121 Webiste and Search Engine</h2>
 	<ul>
-		<li>Runs on Node, Angular, and Express. Hosted on Heroku.</li>
+		<li>Runs on Node, Angular, and Express.</li>
+		<li>Source code on <a href="https://github.com/vnguyen94/121website" target="_blank">GitHub</a>. Hosted on Heroku.</li>
 		<li>Data was extracted by and limited to a web crawl of the ics.uci.edu webdomain.</li>
+		<li>Data on the Heroku is severely limited by memory size; not possible to host the entire dataset from the crawl.</li>
 		<li>Term frequency-inverse document frequency (TF-IDF) scores were calculated according to <a target="_blank" href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">these standards</a>.</li>
 		<li>Created by Saikripa Mukund, John Nguyen, and Van Nguyen. May 2015. </li>
 	</ul>
@@ -57,7 +59,7 @@
 							<span data-tooltip class="has-tip" title="Term Frequency-Inverse Document Frequency">TF-IDF</span> Score</th>
 						<th class="result-website">Website</th>
 					</tr>
-					<tr ng-repeat="element in vm.result track by $index">
+					<tr class="animate-table" ng-repeat="element in vm.result track by $index">
 						<td>
 							<h3>{{ $index + 1 }}</h3>
 						</td>
@@ -65,7 +67,7 @@
 							<h5>{{ element[0] }}</h5>
 						</td>
 						<td>
-							<a href="{{ element[3] }}" target="_blank">{{ element[2] }}</a>
+							<a href="{{ element[2] }}" target="_blank">{{ element[1] }}</a>
 						</td>
 					</tr>
 				</table>
