@@ -66,8 +66,7 @@
 				<table class="result-table large-12 columns">
 					<tr>
 						<th class="result-rank">Ranking</th>
-						<th class="result-score hide-for-small-only">
-							<span data-tooltip class="has-tip" title="Term Frequency-Inverse Document Frequency">TF-IDF</span> Score</th>
+						<th class="result-score hide-for-small-only">Relevance Score</th>
 						<th class="result-website">Website</th>
 					</tr>
 					<tr class="animate-table" ng-repeat="element in vm.result track by $index">
@@ -75,10 +74,10 @@
 							<h3>{{ $index + 1 }}</h3>
 						</td>
 						<td class="hide-for-small-only">
-							<h5>{{ element[0] }}</h5>
+							<h5>{{ element[1] }}</h5>
 						</td>
 						<td>
-							<a href="{{ element[2] }}" target="_blank">{{ element[1] }}</a>
+							<a href="{{ element[2] }}" target="_blank">{{ element[0] }}</a>
 						</td>
 					</tr>
 				</table>

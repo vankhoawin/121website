@@ -7,57 +7,52 @@ function handleError (res, err) {
 }
 
 exports.query = function (req, res) {
-	var key = req.params.query;
+	fs.readFile('server/api/query/document.json', 'utf-8', function(err, documentText) {
+		if (err) { return handleError(res, err); }
+		fs.readFile('server/api/query/corpus.json', 'utf-8', function(err, corpusText) {
+			if (err) { return handleError(res, err); }
 
-	fs.readFile('server/api/query/query.key_termid.json', 'utf-8', function (err, result) {
-    if (err) { return handleError(res, err); }
+			// create small document from the query
+			var queryDoc = {};
+			var queryTerms = req.params.query.split(' ');
+			queryTerms.forEach(function(term) {
+				queryDoc[term] = queryDoc[term] ? queryDoc[term] + 1 : 0;
+			})
 
-    var keyToTermIdJSON = JSON.parse(result);
+			// normalize query
+			var queryTermsLength = queryTerms.length;
+			Object.keys(queryDoc).forEach(function(term) {
+				queryDoc[term] = queryDoc[term] / queryTermsLength;
+			})
 
+			// calculate relevance score
+		  var documentJSON = JSON.parse(documentText);
+		  var corpusJSON = JSON.parse(corpusText);
+		  
+			var relevanceList = [];
+			documentJSON.forEach(function(document) {
+				var score = 0.0;
+				var documentTerms = document[1];
 
-    // split up wordphrase query into individual term IDs
-    var termIdList = [];
-    key.split(' ').forEach(function(key) {
-    	termIdList.push(keyToTermIdJSON[key])
-    })
+				queryTerms.forEach(function(term) {
+					var queryScore = (queryTerms[term] / corpusJSON[term]) || 0.0;
+					var documentScore = (documentTerms[term] / corpusJSON[term]) || 0.0;
 
-		fs.readFile('server/api/query/query.termid_tfidf.json', 'utf-8', function (err, result) {
-	    if (err) { return handleError(res, err); }
+					score += queryScore + documentScore;
+				})
 
-	    var termIdToTFIDFJSON = JSON.parse(result);
+				if (score !== 0) {
+					var title = document[0] || "[UNTITLED]";
+					var url = document[2] || "#";
+					relevanceList.push([title, score, url]);
+				}
+			})
 
+	    relevanceList = relevanceList
+	    	.sort(function _sortByValue(a, b) { return (b[1] - a[1]); })
+	    	.slice(0, 10);
 
-	    // create an object containing all scores so we can add to TFIDF scores that already exist
-	    // without having to loop through the entire array. O(n^2)
-	    var tfidfCompiledObject = {};
-	    termIdList.forEach(function(term) {
-	    	var TFIDFList = termIdToTFIDFJSON[term] || [];
-
-		    TFIDFList.forEach(function(row) {
-		    	row[1] = (row[1] === '') ? '[UNTITLED PAGE]' : row[1];
-
-		    	if (row[2] in tfidfCompiledObject) {
-		    		tfidfCompiledObject[row[2]][0] += row[0];
-		    	}else {
-		    		tfidfCompiledObject[row[2]] = row;
-		    	}
-		    })
-	    })
-
-	    // now that TFIDF object has been filled, extract the rows to return
-	    var toReturn = [];
-	    Object.keys(tfidfCompiledObject).forEach(function(key) {
-	    	toReturn.push(tfidfCompiledObject[key]);
-	    })
-
-	    toReturn = toReturn.sort(function _sortByValue(a, b) {
-	    	return (b[0] - a[0]);
-	    });
-
-	    // return only top ten
-	    toReturn = toReturn.slice(0, 10);
-
-			res.status(200).send(JSON.stringify(toReturn));
+			res.status(200).send(JSON.stringify(relevanceList));
 		})
-  })
+	})
 }
