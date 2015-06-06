@@ -12,6 +12,19 @@ exports.query = function (req, res) {
 		fs.readFile('server/api/query/corpus.json', 'utf-8', function(err, corpusText) {
 			if (err) { return handleError(res, err); }
 
+			// lel
+			if (req.params.query === 'poweroverwhelming') {
+				var deezNutz = [
+					['Van\'s Portfolio', 'i\'m not relevant :(', 'http://vannguyen.herokuapp.com/'],
+					['Saikripa\'s LinkedIn', 'uses a Mac so < 0', 'https://www.linkedin.com/pub/saikripa-mukund/51/a7b/4b7'],
+					['John\'s LinkedIn', 'nah he cheeelin', 'https://www.linkedin.com/pub/john-nguyen/8a/8b6/7b4'],
+					['poweroverwhelming you say', 'over 9000', 'http://sc2casts.com/']
+				];
+
+				return res.status(200).send(JSON.stringify(deezNutz));
+			}
+
+
 			// create small document from the query
 			var queryDoc = {};
 			var queryTerms = req.params.query.split(' ');
